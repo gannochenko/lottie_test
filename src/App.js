@@ -4,30 +4,28 @@ import './App.css';
 import Lottie from 'lottie-react-web'
 import animation from './data.json'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <Lottie
-            options={{
-              animationData: animation
-            }}
-        />
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+
+  constructor() {
+    super();
+    this.state = { playing: true };
+  }
+
+  render() {
+    return (
+        <>
+          <Lottie
+              isPaused={!this.state.playing}
+              options={{
+                animationData: animation
+              }}
+          />
+          <div style={{position: 'fixed', top: 0, left: 0}}>
+            <button onClick={() => this.setState({ playing: !this.state.playing })}>Stop</button>
+          </div>
+        </>
+    );
+  }
 }
 
 export default App;
